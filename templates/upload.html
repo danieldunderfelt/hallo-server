@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Form</title>
+</head>
+<body>
+    <h1>Upload Image and Audio</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="source_image">Source Image:</label>
+        <input type="file" id="source_image" name="source_image" accept="image/*" required><br><br>
+        <label for="driving_audio">Driving Audio:</label>
+        <input type="file" id="driving_audio" name="driving_audio" accept="audio/*" required><br><br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
