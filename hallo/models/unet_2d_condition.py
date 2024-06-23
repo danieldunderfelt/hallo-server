@@ -20,7 +20,7 @@ Key Features:
 - Implementation of cross-attention to leverage encoder hidden states for conditional generation.
 - The model supports gradient checkpointing to reduce memory usage during training.
 
-The module also includes utility functions and classes such as `UNet2DConditionOutput` for structured output 
+The module also includes utility functions and classes such as `UNet2DConditionOutput` for structured output
 and `load_change_cross_attention_dim` for loading and modifying pre-trained models.
 
 Example Usage:
@@ -107,7 +107,7 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
         flip_sin_to_cos (`bool`, *optional*, defaults to `False`):
             Whether to flip the sin to cos in the time embedding.
         freq_shift (`int`, *optional*, defaults to 0): The frequency shift to apply to the time embedding.
-        down_block_types (`Tuple[str]`, *optional*, defaults to 
+        down_block_types (`Tuple[str]`, *optional*, defaults to
         `("CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "CrossAttnDownBlock2D", "DownBlock2D")`):
             The tuple of downsample blocks to use.
         mid_block_type (`str`, *optional*, defaults to `"UNetMidBlock2DCrossAttn"`):
@@ -1406,14 +1406,14 @@ class UNet2DConditionModel(ModelMixin, ConfigMixin, UNet2DConditionLoadersMixin)
                 f"loading safeTensors weights from {pretrained_model_path} ..."
             )
             state_dict = load_file(
-                pretrained_model_path.joinpath(SAFETENSORS_WEIGHTS_NAME), device="cpu"
+                pretrained_model_path.joinpath(SAFETENSORS_WEIGHTS_NAME), device="cuda"
             )
 
         elif pretrained_model_path.joinpath(WEIGHTS_NAME).exists():
             logger.debug(f"loading weights from {pretrained_model_path} ...")
             state_dict = torch.load(
                 pretrained_model_path.joinpath(WEIGHTS_NAME),
-                map_location="cpu",
+                map_location="cuda",
                 weights_only=True,
             )
         else:

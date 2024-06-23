@@ -1,10 +1,10 @@
 # pylint: disable=E1120
 """
-This module contains the implementation of mutual self-attention, 
-which is a type of attention mechanism used in deep learning models. 
-The module includes several classes and functions related to attention mechanisms, 
-such as BasicTransformerBlock and TemporalBasicTransformerBlock. 
-The main purpose of this module is to provide a comprehensive attention mechanism for various tasks in deep learning, 
+This module contains the implementation of mutual self-attention,
+which is a type of attention mechanism used in deep learning models.
+The module includes several classes and functions related to attention mechanisms,
+such as BasicTransformerBlock and TemporalBasicTransformerBlock.
+The main purpose of this module is to provide a comprehensive attention mechanism for various tasks in deep learning,
 such as image and video processing, natural language processing, and so on.
 """
 
@@ -124,15 +124,15 @@ class ReferenceAttentionControl:
         _dtype=torch.float16,
         batch_size=1,
         num_images_per_prompt=1,
-        device=torch.device("cpu"),
+        device=torch.device("cuda"),
         _fusion_blocks="midup",
     ):
         """
         Registers reference hooks for the model.
 
-        This function is responsible for registering reference hooks in the model, 
+        This function is responsible for registering reference hooks in the model,
         which are used to modify the attention mechanism and group normalization layers.
-        It takes various parameters as input, such as mode, 
+        It takes various parameters as input, such as mode,
         do_classifier_free_guidance, _attention_auto_machine_weight, _gn_auto_machine_weight, _style_fidelity,
         _reference_attn, _reference_adain, _dtype, batch_size, num_images_per_prompt, device, and _fusion_blocks.
 

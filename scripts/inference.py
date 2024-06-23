@@ -4,7 +4,7 @@
 """
 This script contains the main inference pipeline for processing audio and image inputs to generate a video output.
 
-The script imports necessary packages and classes, defines a neural network model, 
+The script imports necessary packages and classes, defines a neural network model,
 and contains functions for processing audio embeddings and performing inference.
 
 The main inference process is outlined in the following steps:
@@ -24,7 +24,7 @@ This script can be run from the command line with the following arguments:
 - output_path: Path to save the output video.
 
 Example:
-python scripts/inference.py --audio_path audio.wav --image_path image.jpg 
+python scripts/inference.py --audio_path audio.wav --image_path image.jpg
     --face_mask_path face_mask.png --face_emb_path face_emb.pt --output_path output.mp4
 """
 
@@ -50,7 +50,7 @@ from hallo.utils.util import tensor_to_video
 class Net(nn.Module):
     """
     The Net class combines all the necessary modules for the inference process.
-    
+
     Args:
         reference_unet (UNet2DConditionModel): The UNet2DConditionModel used as a reference for inference.
         denoising_unet (UNet3DConditionModel): The UNet3DConditionModel used for denoising the input audio.
@@ -243,7 +243,7 @@ def inference_process(args: argparse.Namespace):
     m,u = net.load_state_dict(
         torch.load(
             os.path.join(audio_ckpt_dir, "net.pth"),
-            map_location="cpu",
+            map_location="cuda",
         ),
     )
     assert len(m) == 0 and len(u) == 0, "Fail to load correct checkpoint."

@@ -780,14 +780,14 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                 f"loading safeTensors weights from {pretrained_model_path} ..."
             )
             state_dict = load_file(
-                pretrained_model_path.joinpath(SAFETENSORS_WEIGHTS_NAME), device="cpu"
+                pretrained_model_path.joinpath(SAFETENSORS_WEIGHTS_NAME), device="cuda"
             )
 
         elif pretrained_model_path.joinpath(WEIGHTS_NAME).exists():
             logger.debug(f"loading weights from {pretrained_model_path} ...")
             state_dict = torch.load(
                 pretrained_model_path.joinpath(WEIGHTS_NAME),
-                map_location="cpu",
+                map_location="cuda",
                 weights_only=True,
             )
         else:
@@ -800,10 +800,10 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                 print(
                     f"Load motion module params from {motion_module_path}")
                 motion_state_dict = torch.load(
-                    motion_module_path, map_location="cpu", weights_only=True
+                    motion_module_path, map_location="cuda", weights_only=True
                 )
             elif motion_module_path.suffix.lower() == ".safetensors":
-                motion_state_dict = load_file(motion_module_path, device="gpu")
+                motion_state_dict = load_file(motion_module_path, device="cuda")
             else:
                 raise RuntimeError(
                     f"unknown file format for motion module weights: {motion_module_path.suffix}"

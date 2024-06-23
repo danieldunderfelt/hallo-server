@@ -21,6 +21,7 @@ audio_ckpt_dir: ./pretrained_models/hallo
 
 base_model_path: ./pretrained_models/stable-diffusion-v1-5
 
+#motion_module_path: ./pretrained_models/motion_module/animatediff_lightning_4step_diffusers.safetensors
 motion_module_path: ./pretrained_models/motion_module/mm_sd_v15_v2.ckpt
 
 face_analysis:
@@ -72,7 +73,7 @@ unet_additional_kwargs:
     - "down"
     - "mid"
   stack_enable_blocks_depth: [0,1,2,3]
-  
+
 
 enable_zero_snr: true
 
