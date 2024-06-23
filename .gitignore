@@ -1,6 +1,8 @@
 # Output and uploads
 output/
 uploads/
+examples/
+assets/
 
 # running cache
 mlruns/
