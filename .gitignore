@@ -1,3 +1,7 @@
+# Output and uploads
+output/
+uploads/
+
 # running cache
 mlruns/
 
