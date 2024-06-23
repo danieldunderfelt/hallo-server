@@ -50,7 +50,7 @@ class UNet3DConditionOutput(BaseOutput):
 
     Attributes:
         sample (`torch.FloatTensor`):
-            A tensor representing the processed sample. The shape and nature of this tensor will depend on the 
+            A tensor representing the processed sample. The shape and nature of this tensor will depend on the
             specific configuration of the model and the input data.
     """
     sample: torch.FloatTensor
@@ -58,12 +58,12 @@ class UNet3DConditionOutput(BaseOutput):
 
 class UNet3DConditionModel(ModelMixin, ConfigMixin):
     """
-    A 3D UNet model designed to handle conditional image and video generation tasks. This model is particularly 
-    suited for tasks that require the generation of 3D data, such as volumetric medical imaging or 3D video 
+    A 3D UNet model designed to handle conditional image and video generation tasks. This model is particularly
+    suited for tasks that require the generation of 3D data, such as volumetric medical imaging or 3D video
     generation, while incorporating additional conditioning information.
 
-    The model consists of an encoder-decoder structure with skip connections. It utilizes a series of downsampling 
-    and upsampling blocks, with a middle block for further processing. Each block can be customized with different 
+    The model consists of an encoder-decoder structure with skip connections. It utilizes a series of downsampling
+    and upsampling blocks, with a middle block for further processing. Each block can be customized with different
     types of layers and attention mechanisms.
 
     Parameters:
@@ -104,14 +104,14 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
         use_audio_module (`bool`, defaults to False): Whether to use an audio module.
         audio_attention_dim (`int`, defaults to 768): The dimension for audio attention.
 
-    The model supports various features such as gradient checkpointing, attention processors, and sliced attention 
+    The model supports various features such as gradient checkpointing, attention processors, and sliced attention
     computation, making it flexible and efficient for different computational requirements and use cases.
 
-    The forward method of the model accepts a sample, timestep, and encoder hidden states as input, and it returns 
-    the processed sample as output. The method also supports additional conditioning information such as class 
+    The forward method of the model accepts a sample, timestep, and encoder hidden states as input, and it returns
+    the processed sample as output. The method also supports additional conditioning information such as class
     labels, audio embeddings, and masks for specialized tasks.
 
-    The from_pretrained_2d class method allows loading a pre-trained 2D UNet model and adapting it for 3D tasks by 
+    The from_pretrained_2d class method allows loading a pre-trained 2D UNet model and adapting it for 3D tasks by
     incorporating motion modules and other 3D specific features.
     """
 
@@ -803,7 +803,7 @@ class UNet3DConditionModel(ModelMixin, ConfigMixin):
                     motion_module_path, map_location="cpu", weights_only=True
                 )
             elif motion_module_path.suffix.lower() == ".safetensors":
-                motion_state_dict = load_file(motion_module_path, device="cpu")
+                motion_state_dict = load_file(motion_module_path, device="gpu")
             else:
                 raise RuntimeError(
                     f"unknown file format for motion module weights: {motion_module_path.suffix}"

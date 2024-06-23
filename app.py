@@ -1,11 +1,18 @@
+import sys
+import os
+
+# Add the project root directory to the Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, project_root)
+
 from flask import Flask, request, render_template, jsonify
 import os
 import subprocess
 from datetime import datetime
 
 app = Flask(__name__)
-UPLOAD_FOLDER = '/app/uploads'
-OUTPUT_FOLDER = '/app/output'
+UPLOAD_FOLDER = './uploads'
+OUTPUT_FOLDER = './output'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 os.makedirs(OUTPUT_FOLDER, exist_ok=True)
 
